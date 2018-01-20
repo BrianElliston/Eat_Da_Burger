@@ -5,6 +5,7 @@ var express = require("express");
 var meth = require("method-override");
 var bodyparser = require("body-parser");
 var path = require("path");
+var connection = require("./config/connection.js")
 var app = express();
 
 var PORT = process.env.PORT || 8000;
@@ -23,7 +24,20 @@ app.get("/", function(req, res){
     //This is rendering the index.handlbars
     res.render("index");
 });
-
+//This code is capturing the user input and posting it in the data base
+app.post("/newBurger", function(req, res){
+    console.log("Button was Pushed")
+    
+    connection.query("INSERT INTO burgers (burger_name) VALUES (?)", [req.body.burger_name], function(err, result) {
+        if (err) {
+          return res.status(500).end();
+        }
+    res.redirect("/");
+        // Send back the ID of the new burger
+        // res.json({ id: result.insertId });
+        // console.log({ id: result.insertId });
+      });
+})
 
 
 

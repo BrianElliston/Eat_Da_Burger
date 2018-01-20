@@ -29,4 +29,4 @@
 
 
   //Here I export my connection
-  module.exports = db_connect;
+  module.exports = connection;

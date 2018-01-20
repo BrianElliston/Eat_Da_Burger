@@ -4,9 +4,16 @@
 
 
 {{!-- test code to see if rendering on main.handlebars --}}
-<h2>burger eaten</h2>
-
-<form action="submit"><button>Devour</button></form>
 
 
 
+<h2>Enter a Burger!!</h2>
+
+<br>
+<form action="/newBurger" method="post"><input type="text" name="burger_name">
+
+<br>
+
+<button type="submit">Place Order</button>
+
+</form>
