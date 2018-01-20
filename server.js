@@ -21,8 +21,12 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.get("/", function(req, res){
+
+    connection.query("SELECT * FROM burgers", function(request, response){
+        res.render("index", {burgers: response});
+    
     //This is rendering the index.handlbars
-    res.render("index");
+    })
 });
 //This code is capturing the user input and posting it in the data base
 app.post("/newBurger", function(req, res){
@@ -37,7 +41,20 @@ app.post("/newBurger", function(req, res){
         // res.json({ id: result.insertId });
         // console.log({ id: result.insertId });
       });
-})
+});
+
+
+app.post("/devourBurger", function(req, res){
+console.log(req.body.id);
+connection.query("UPDATE burgers SET devoured = 1 WHERE id = ?", [req.body.id], function(err, result) {
+    if (err) {
+      return res.status(500).end();
+    }
+
+    res.redirect("/");
+});
+});
+
 
 
 

@@ -17,3 +17,27 @@
 <button type="submit">Place Order</button>
 
 </form>
+
+<ul>
+{{#each burgers}}
+
+{{#unless devoured}}
+
+<li>{{burger_name}}
+    <form action="/devourBurger" method="post"> <input type="hidden" name="id" value="{{id}}"><button type="submit">Devour</button></form>
+</li>
+{{/unless}}
+
+{{/each}}
+
+</ul>
+
+<h2>Burgers Enjoyed</h2>
+<ul>
+{{#each burgers}}
+{{#if devoured}}
+<li>{{burger_name}}</li>
+{{/if}}
+{{/each}}
+</ul>
+
