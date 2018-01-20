@@ -1,19 +1,32 @@
-//Create a connection.js file inside config directory.
+ var mysql = require("mysql");   
+    
+  //these is my authentication    
+ var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "burgers_db"
+  });
 
-// Inside the connection.js file, setup the code to connect Node to MySQL.
+//This is my actual connection (openning a port to connect to the data base)
+  connection.connect(function(err) {
+    if (err) {
+      console.error("error connecting: " + err.stack);
+      return;
+    }
+  
+    console.log("connected as id " + connection.threadId);
+  });
 
-// Export the connection.
-// module.exports = function(app){
-    
-    
-    
-    
-      
-//       app.get("/:characters", function(req, res) {
-//         var responses = req.params.characters;
-      
-//         console.log(responses);
-      
-//         res.end();
-//       });
-//     }
+
+  
+
+
+
+
+
+
+
+
+  //Here I export my connection
+  module.exports = db_connect;
